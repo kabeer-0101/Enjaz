@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مخطط رمضان التفاعلي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #065f46; /* أخضر زمردي */
+            --accent: #d4af37;  /* ذهبي */
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h1 { color: var(--primary); margin-bottom: 5px; }
+        
+        /* دائرة الإنجاز */
+        .progress-container {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            margin-bottom: 20px;
+            border-top: 4px solid var(--accent);
+        }
+
+        .circular-progress {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary) 0deg, #e2e8f0 0deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .circular-progress::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--card);
+        }
+
+        .progress-value {
+            position: relative;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* المجموعات */
+        .category {
+            background: var(--card);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .category h2 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+            margin-top: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            background: #f1f5f9;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            user-select: none;
+        }
+
+        .check-item input { display: none; }
+
+        .check-item.active {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .check-item.active i::before {
+            content: "✓ ";
+            font-weight: bold;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 20px;
+        }
+
+        .reset-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-family: 'Tajawal';
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>مخطط عباداتي</h1>
+        <p>رمضان مبارك .. تقبل الله منا ومنكم</p>
+    </header>
+
+    <div class="progress-container">
+        <div class="circular-progress" id="progressCircle">
+            <span class="progress-value" id="progressText">0%</span>
+        </div>
+        <p id="motivationalText">ابدأ يومك بذكر الله!</p>
+    </div>
+
+    <div class="category">
+        <h2>الصلوات الخمس</h2>
+        <div class="items-grid">
+            <label class="check-item"><input type="checkbox" class="task"><i></i>الفجر</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>الظهر</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>العصر</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>المغرب</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>العشاء</label>
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>السنن الرواتب</h2>
+        <div class="items-grid">
+            <label class="check-item"><input type="checkbox" class="task"><i></i>قبل الفجر</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>قبل الظهر</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>بعد الظهر</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>بعد المغرب</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>بعد العشاء</label>
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>قراءة ٥ أجزاء</h2>
+        <div class="items-grid">
+            <label class="check-item"><input type="checkbox" class="task"><i></i>جزء ١</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>جزء ٢</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>جزء ٣</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>جزء ٤</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>جزء ٥</label>
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>عبادات أخرى</h2>
+        <div class="items-grid">
+            <label class="check-item"><input type="checkbox" class="task"><i></i>صلاة الوتر</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>أذكار الصباح</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>أذكار المساء</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>الاستغفار</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>الصلاة على النبي</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>السنة النبوية</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>الصدقة</label>
+            <label class="check-item"><input type="checkbox" class="task"><i></i>عادة حسنة</label>
+        </div>
+    </div>
+
+    <center><button class="reset-btn" onclick="resetDay()">تصفير اليوم الجديد</button></center>
+    
+    <div class="footer-note">يتم حفظ تقدمك تلقائياً في هذا المتصفح</div>
+</div>
+
+<script>
+    const checkboxes = document.querySelectorAll('.task');
+    const progressCircle = document.getElementById('progressCircle');
+    const progressText = document.getElementById('progressText');
+    const motiText = document.getElementById('motivationalText');
+
+    const quotes = [
+        "ما شاء الله! بداية موفقة",
+        "استمر، الجنة تناديك",
+        "عمل رائع، تقبل الله منك",
+        "أنت تقترب من الهدف!",
+        "يا باغي الخير أقبل!"
+    ];
+
+    // تحديث الشكل والنسبة
+    function updateProgress() {
+        const total = checkboxes.length;
+        const checked = document.querySelectorAll('.task:checked').length;
+        const percentage = Math.round((checked / total) * 100);
+        
+        progressText.innerText = percentage + "%";
+        progressCircle.style.background = `conic-gradient(var(--primary) ${percentage * 3.6}deg, #e2e8f0 0deg)`;
+        
+        // تغيير الرسالة التحفيزية
+        if(percentage > 0) motiText.innerText = quotes[Math.floor(Math.random() * quotes.length)];
+        if(percentage === 100) motiText.innerText = "تهانينا! أتممت عبادات اليوم بنجاح ✨";
+
+        // حفظ الحالة
+        const states = Array.from(checkboxes).map(cb => cb.checked);
+        localStorage.setItem('ramadanData', JSON.stringify(states));
+    }
+
+    // إضافة أحداث الضغط
+    checkboxes.forEach((cb, index) => {
+        cb.addEventListener('change', () => {
+            cb.parentElement.classList.toggle('active', cb.checked);
+            updateProgress();
+        });
+    });
+
+    // تحميل البيانات المحفوظة
+    window.onload = () => {
+        const savedData = JSON.parse(localStorage.getItem('ramadanData'));
+        if (savedData) {
+            checkboxes.forEach((cb, index) => {
+                cb.checked = savedData[index];
+                if(cb.checked) cb.parentElement.classList.add('active');
+            });
+            updateProgress();
+        }
+    };
+
+    function resetDay() {
+        if(confirm("هل تريد تصفير القائمة لبدء يوم جديد؟")) {
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+                cb.parentElement.classList.remove('active');
+            });
+            updateProgress();
+        }
+    }
+</script>
+
+</body>
+</html>
